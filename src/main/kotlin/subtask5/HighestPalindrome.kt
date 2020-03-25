@@ -2,26 +2,27 @@ package rsTask.subtask5
 
 class HighestPalindrome {
 
+
     fun highestValuePalindrome(n: Int, k: Int, digitString: String): String {
+        var stringLenght = n
         var changes = k
         var counter = result(digitString)
         var palidrom = digitString.toCharArray()
-
-        for (i in 0 until digitString.length / 2) {
+        for (i in 0 until stringLenght / 2) {
             var left = palidrom[i]
             var right = palidrom[palidrom.size - 1 - i]
             if (left != right) {
                 when {
                     changes > counter -> {
-                        palidrom[i] = '9'
-                        palidrom[palidrom.size - 1 - i] = '9'
-                        changes--
+                        left = '9'
+                        right = '9'
+                        changes-=2
                     }
-                    counter ==  changes -> {
+                    counter >  changes -> {
                         if (left.toInt() > right.toInt()) {
-                            palidrom[palidrom.size - 1 - i] = left
+                            right = left
                         } else {
-                            palidrom [i] = right
+                            left = right
                         }
                     }
                     else -> return "-1"
